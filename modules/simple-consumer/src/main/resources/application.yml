@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    stream:
+      function:
+        bindings:
+          counterConsumer-in-0: input
+
+      bindings:
+        input:
+          group: counter-consumer
+          destination: counter2

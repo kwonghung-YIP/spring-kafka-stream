@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    streams:
+      application-id: simple-kafka-stream-poc
+      properties:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$IntegerSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde

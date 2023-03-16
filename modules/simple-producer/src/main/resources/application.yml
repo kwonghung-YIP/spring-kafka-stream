@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    stream:
+      function:
+        bindings:
+          counterProducer-out-0: output
+
+      bindings:
+        output:
+          group: counter-producer
+          destination: counter
+          producer:
+            poller:
+              fixed-delay: 500
+
+
+
