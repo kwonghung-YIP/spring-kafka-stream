@@ -1,17 +1,55 @@
 spring:
   cloud:
+    function:
+      definition: randomQuote
+
     stream:
       function:
         bindings:
-          counterProducer-out-0: output
+          counter-out-0: counter
+          randomQuote-out-0: quote
 
       bindings:
-        output:
+        counter:
           group: counter-producer
           destination: counter
           producer:
             poller:
               fixed-delay: 500
+
+        quote:
+          group: random-quote-producer
+          destination: random-quote
+          producer:
+            poller:
+              fixed-delay: 2000
+
+      kafka:
+        bindings:
+          quote:
+            producer:
+              configuration:
+                key.serializer: org.apache.kafka.common.serialization.StringSerializer
+
+tickers:
+  quotes:
+    AAPL: 152.99
+    CSCO:  49.825
+    EBAY:  41.435
+    TSLA: 180.45
+    AMZN:  96.20
+    MSFT: 265.44
+    NFLX: 303.74
+    PANW:  68.33
+    PYPL:  73.51
+    QCOM: 119.36
+    NVDA: 242.28
+    TXN:  175.48
+    WDAY: 190.325
+    ZM:    68.91
+
+
+
 
 
 

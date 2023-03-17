@@ -1,11 +1,25 @@
 spring:
   cloud:
+    function:
+      definition: randomQuote
+
     stream:
       function:
         bindings:
-          counterConsumer-in-0: input
+          counter-in-0: counter
+          randomQuote-in-0: quote
 
       bindings:
-        input:
+        counter:
           group: counter-consumer
           destination: counter2
+        quote:
+          group: random-quote-consumer
+          destination: random-quote
+
+      kafka:
+        bindings:
+          quote:
+            consumer:
+              configuration:
+                key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
