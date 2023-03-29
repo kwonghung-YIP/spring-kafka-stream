@@ -1,12 +1,12 @@
 spring:
   cloud:
     function:
-      definition: randomQuote
+      definition: runCounter #randomQuote
 
     stream:
       function:
         bindings:
-          counter-in-0: counter
+          runCounter-in-0: counter
           randomQuote-in-0: quote
 
       bindings:

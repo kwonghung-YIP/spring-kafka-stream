@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 public class SimpleConsumerConfig {
 
     @Bean
-    public Consumer<Message<Long>> counter() {
+    public Consumer<Message<Long>> runCounter() {
         return (msg) -> {
             MessageHeaders headers = msg.getHeaders();
             log.info("Received counter {} from topic {}", msg.getPayload(), headers.get(KafkaHeaders.RECEIVED_TOPIC,String.class));

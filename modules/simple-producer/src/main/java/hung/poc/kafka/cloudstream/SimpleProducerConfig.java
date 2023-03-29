@@ -19,7 +19,7 @@ public class SimpleProducerConfig {
     final private AtomicLong counter = new AtomicLong();
 
     @Bean
-    public Supplier<Long> counter() {
+    public Supplier<Long> runCounter() {
         return () -> {
             long l = counter.getAndIncrement();
             log.info("Sending out counter {}...", l);
@@ -38,6 +38,7 @@ public class SimpleProducerConfig {
 
             Message msg = MessageBuilder.withPayload(quote)
                             .setHeader(KafkaHeaders.KEY,ticker)
+                            //.setHeader("__TypeId__",Quote.class.getName())
                             .build();
 
             log.info("Sending out random quote {}...", msg);
